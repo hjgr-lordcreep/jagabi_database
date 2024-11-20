@@ -5,9 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Jagabee1.unity
+    guid: b09b9253b0f304e4294f8b58c679731a
+  - enabled: 1
+    path: Assets/Scenes/Jagabee2.unity
+    guid: b3dae43b3cf0e874aa16e7f03618fe74
+  - enabled: 1
+    path: Assets/Scenes/Jagabee3.unity
+    guid: af26d03e4f4406d4aa6c8d5e4f68453b
+  - enabled: 1
+    path: Assets/Scenes/Jagabee4.unity
+    guid: f24fbd8b3b438d0449bcc8541d8e0066
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
