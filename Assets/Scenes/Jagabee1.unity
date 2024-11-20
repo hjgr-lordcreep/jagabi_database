@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 107441136}
   - component: {fileID: 107441135}
   m_Layer: 5
+  m_Name: InputField (TMP) (1)
   m_Name: 'IDInputField '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,6 +363,7 @@ GameObject:
   - component: {fileID: 139584935}
   - component: {fileID: 139584934}
   m_Layer: 5
+  m_Name: InputField (TMP) (2)
   m_Name: FWField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,6 +438,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
+  m_ContentType: 0
+  m_InputType: 0
   m_ContentType: 7
   m_InputType: 2
   m_AsteriskChar: 42
@@ -801,6 +805,7 @@ GameObject:
   - component: {fileID: 595217714}
   - component: {fileID: 595217713}
   m_Layer: 5
+  m_Name: Button
   m_Name: LoginBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1363,6 +1368,7 @@ GameObject:
   - component: {fileID: 989768233}
   - component: {fileID: 989768232}
   m_Layer: 5
+  m_Name: Button
   m_Name: JoinBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1445,10 +1451,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
         m_CallState: 1
 =======
         m_CallState: 2
 >>>>>>> 051bd57c10c64046e017cc90374f12057d0719ab
+=======
+        m_CallState: 2
+=======
+        m_CallState: 1
+>>>>>>> eade444f342aa3c4dc1120d51c9755db27bc1bb0
+>>>>>>> 8c8b52a211818b828b5bcbf8420481a99856c36a
 --- !u!114 &989768233
 MonoBehaviour:
   m_ObjectHideFlags: 0
