@@ -28,14 +28,43 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    ////아이템을 생성하고 리스트에 추가하는 함수
+    //private void CreateItems(GameObject itemPrefab, List<GameObject> itemList)
+    //{
+    //    for (int i = 0; i < Random.Range(0, 5); i++)
+    //    {
+    //        Vector3 randomPos = new Vector3(Random.Range(-5f, 5f), Random.Range(0.5f, 2f), Random.Range(-5f, 5f));
+    //        GameObject spawnedItem = Instantiate(itemPrefab, randomPos, Quaternion.identity);
+    //        itemList.Add(spawnedItem);
+    //    }
+    //}
+
     // 아이템을 생성하고 리스트에 추가하는 함수
     private void CreateItems(GameObject itemPrefab, List<GameObject> itemList)
     {
-        for (int i = 0; i < Random.Range(2, 5); i++)
+        int numItems = Random.Range(5, 10); // 생성할 아이템의 개수를 정합니다.
+
+        for (int i = 0; i < numItems; i++)
         {
-            Vector3 randomPos = new Vector3(Random.Range(-5f, 5f), Random.Range(0.5f, 2f), Random.Range(-5f, 5f));
+            // 아이템을 생성할 랜덤 위치
+            Vector3 randomPos = new Vector3(Random.Range(0f, 1f), Random.Range(0.5f, 2f), Random.Range(0f, 1f));
+
+            // 아이템을 생성
             GameObject spawnedItem = Instantiate(itemPrefab, randomPos, Quaternion.identity);
+
+            // 랜덤한 방향으로 튕겨 나갈 수 있도록 Rigidbody에 힘을 가합니다.
+            Rigidbody rb = spawnedItem.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                Vector3 randomDirection = Random.onUnitSphere; // 구형 범위에서 랜덤 방향을 생성
+                float force = Random.Range(5f, 10f); // 랜덤한 힘을 부여
+                rb.AddForce(randomDirection * force, ForceMode.VelocityChange); // 폭죽처럼 퍼지도록 힘을 가함
+            }
+
+            // 아이템을 리스트에 추가
             itemList.Add(spawnedItem);
         }
     }
+
+
 }
