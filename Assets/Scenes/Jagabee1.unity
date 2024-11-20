@@ -942,6 +942,7 @@ MonoBehaviour:
   passwordInput: {fileID: 139584934}
   LoginButton: {fileID: 595217713}
   JoinButton: {fileID: 989768232}
+  popup: {fileID: 0}
 --- !u!4 &614750976
 Transform:
   m_ObjectHideFlags: 0

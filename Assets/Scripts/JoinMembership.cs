@@ -23,7 +23,7 @@ public class JoinMembership : MonoBehaviour
     [SerializeField] private Button JoinButton;
     [SerializeField] private Button CheckButton;
 
- 
+
     //public Color wrongColor = Color.red;
 
     //private string username = null;
@@ -31,6 +31,7 @@ public class JoinMembership : MonoBehaviour
     //private string checkpassword = null;
     //private string email = null;
 
+    private TextMeshProUGUI game;
 
     private const string loginUri = "http://127.0.0.1/joinmembership.php";
 
@@ -67,7 +68,7 @@ public class JoinMembership : MonoBehaviour
         string username,  string email,string password, string checkpassword)
     {
 
-
+    
 
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
@@ -97,6 +98,7 @@ public class JoinMembership : MonoBehaviour
                 if (wu == "1") // 아이디 이이 존재합니다
                 {
                     Debug.Log("아이디 이미 존재 합니다");
+                    
                     popUp.SetActive(true);
                     popUpText1.enabled = true;
 
@@ -123,6 +125,7 @@ public class JoinMembership : MonoBehaviour
             }
         }
     }
+
 
 
     //private void pwCheck()
