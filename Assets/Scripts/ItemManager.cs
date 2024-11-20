@@ -10,6 +10,7 @@ public class ItemManager : MonoBehaviour
     // 각 아이템 리스트를 저장할 리스트
     private List<List<GameObject>> itemLists = new List<List<GameObject>>();
 
+    private Transform itemsParent;
     private void Awake()
     {
         // 리스트 초기화 (빈 리스트로 초기화)
@@ -17,11 +18,21 @@ public class ItemManager : MonoBehaviour
         {
             itemLists.Add(new List<GameObject>());
         }
+
+        // 'items' 빈 오브젝트를 동적으로 생성
+        GameObject itemsObject = new GameObject("Items");
+        itemsParent = itemsObject.transform;  // 생성된 오브젝트의 Transform을 부모로 설정
     }
 
     private void Start()
     {
-        // 아이템 생성 (각 아이템마다 5개씩)
+        // 아이템 생성
+        InitializeItems();
+    }
+
+    // 아이템을 생성하는 기능을 캡슐화한 함수
+    public void InitializeItems()
+    {
         for (int i = 0; i < itemPrefabs.Count; i++)
         {
             CreateItems(itemPrefabs[i], itemLists[i]);
@@ -42,7 +53,7 @@ public class ItemManager : MonoBehaviour
     // 아이템을 생성하고 리스트에 추가하는 함수
     private void CreateItems(GameObject itemPrefab, List<GameObject> itemList)
     {
-        int numItems = Random.Range(5, 10); // 생성할 아이템의 개수를 정합니다.
+        int numItems = Random.Range(1, 5); // 생성할 아이템의 개수를 정합니다.
 
         for (int i = 0; i < numItems; i++)
         {
@@ -51,6 +62,9 @@ public class ItemManager : MonoBehaviour
 
             // 아이템을 생성
             GameObject spawnedItem = Instantiate(itemPrefab, randomPos, Quaternion.identity);
+
+            // 생성된 아이템의 부모를 'itemsParent'로 설정
+            spawnedItem.transform.SetParent(itemsParent);
 
             // 랜덤한 방향으로 튕겨 나갈 수 있도록 Rigidbody에 힘을 가합니다.
             Rigidbody rb = spawnedItem.GetComponent<Rigidbody>();
