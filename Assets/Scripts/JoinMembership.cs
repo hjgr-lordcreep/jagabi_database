@@ -37,6 +37,9 @@ public class JoinMembership : MonoBehaviour
     private void Awake()
     {
         JoinButton.interactable = false;
+        popUpText1.enabled = false;
+        popUpText2.enabled = false;
+        popUpText3.enabled = false;
     }
 
     private void Start()
