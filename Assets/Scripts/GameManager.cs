@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
     // 아이템 매니저를 참조하기 위한 변수
     public ItemManager itemManager;
 
+    private void Awake()
+    {
+        itemManager = FindAnyObjectByType<ItemManager>();
+    }
+
     private void Update()
     {
         if(Input.GetMouseButtonDown(0))
