@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 107441135}
   m_Layer: 5
   m_Name: InputField (TMP) (1)
+  m_Name: 'IDInputField '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,6 +364,7 @@ GameObject:
   - component: {fileID: 139584934}
   m_Layer: 5
   m_Name: InputField (TMP) (2)
+  m_Name: FWField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,6 +440,8 @@ MonoBehaviour:
   m_ScrollSensitivity: 1
   m_ContentType: 0
   m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -802,6 +806,7 @@ GameObject:
   - component: {fileID: 595217713}
   m_Layer: 5
   m_Name: Button
+  m_Name: LoginBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1364,6 +1369,7 @@ GameObject:
   - component: {fileID: 989768232}
   m_Layer: 5
   m_Name: Button
+  m_Name: JoinBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1444,7 +1450,11 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+<<<<<<< HEAD
         m_CallState: 2
+=======
+        m_CallState: 1
+>>>>>>> eade444f342aa3c4dc1120d51c9755db27bc1bb0
 --- !u!114 &989768233
 MonoBehaviour:
   m_ObjectHideFlags: 0
