@@ -58,7 +58,7 @@ public class ItemManager : MonoBehaviour
     // 아이템을 생성하고 리스트에 추가하는 함수
     private void CreateItems(GameObject itemPrefab, List<GameObject> itemList)
     {
-        int numItems = Random.Range(5, 10); // 생성할 아이템의 개수를 정합니다.
+        int numItems = Random.Range(10, 15); // 생성할 아이템의 개수를 정합니다.
 
         for (int i = 0; i < numItems; i++)
         {
@@ -118,5 +118,7 @@ public class ItemManager : MonoBehaviour
             }
         }
     }
+
+    
 
 }
