@@ -4,8 +4,17 @@ using UnityEngine;
 
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using UnityEngine.UI;
+using System.Linq;
 public class ItemManager : MonoBehaviour
 {
+    //버튼들 선언
+    private Button[] buttons = new Button[10];
+
+    //로그아웃 버튼 선언
+    [SerializeField] private Button logout;
+
+    //데이터베이스랑 연결
     public class DatabaseItem
     {
         public string id { get; set; }
@@ -23,6 +32,8 @@ public class ItemManager : MonoBehaviour
 
     // 각 아이템 리스트를 저장할 리스트
     private List<List<GameObject>> itemLists = new List<List<GameObject>>();
+    [SerializeField] private List<string> invenIdList = new List<string>();
+    Dictionary<string, int>  idDic = new Dictionary<string, int>();
 
     private void Awake()
     {
@@ -31,6 +42,9 @@ public class ItemManager : MonoBehaviour
         {
             itemLists.Add(new List<GameObject>());
         }
+
+
+
     }
 
 
@@ -39,10 +53,21 @@ public class ItemManager : MonoBehaviour
         //StartCoroutine(GetDatabaseCoroutine());
 
         InitialCreateItems();
+
+        //버튼을 클릭했을 때 딕셔너리 출력
+        logout.onClick.AddListener(() =>
+        {
+            foreach (int fg in idDic.Values)
+            {
+                Debug.Log("Value: " + fg);
+            }
+        });
+
+        AddDic();
     }
     public void InitialCreateItems()
     {
-        // 아이템 생성 (각 아이템마다 5개씩)
+        // 아이템 생성 (각 아이템마다 10개씩)
         for (int i = 0; i < itemPrefabs.Count; i++)
         {
             CreateItems(itemPrefabs[i], itemLists[i]);
@@ -52,7 +77,7 @@ public class ItemManager : MonoBehaviour
     // 아이템을 생성하고 리스트에 추가하는 함수
     private void CreateItems(GameObject itemPrefab, List<GameObject> itemList)
     {
-        int numItems = Random.Range(0, 5); // 생성할 아이템의 개수를 정합니다.
+        int numItems = 10; // 생성할 아이템의 개수를 정합니다.
 
         for (int i = 0; i < numItems; i++)
         {
@@ -76,9 +101,46 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+   //딕셔너리에 기본 ID값이 넣기
+    private void AddDic()
+    {
+        idDic.Add("1", 0);
+        idDic.Add("2", 0);
+        idDic.Add("3", 0);
+        idDic.Add("4", 0);
+        idDic.Add("5", 0);
+        idDic.Add("6", 0);
+        idDic.Add("7", 0);
+        idDic.Add("8", 0);
+        idDic.Add("9", 0);
+        idDic.Add("10", 0);
 
+    }
 
+    //아이템 클릭했을 때 아이디 매칭하고 딕셔너리의 값이 +1하는 함수
+    public void GetItem(string _itemId)
+    {
+        //클릭한 모든 아이템들이 들어가는 리스트
+        invenIdList.Add(_itemId);
 
+        //만약에 받아오는 _itemID가 딕셔너리에 있는 키랑 같을 때 그 키의 Value값이 +1
+        //개수 저장하는 코드
+        if(idDic.ContainsKey(_itemId))
+        {
+            idDic[_itemId] += 1;
+        }
+
+        //테스트용 딕셔너리 출력코드
+       foreach (int fg in idDic.Values)
+        {
+            Debug.Log("Value: " + fg);
+            
+        }
+    }
+
+ 
+
+  
 
 
 
@@ -105,6 +167,7 @@ public class ItemManager : MonoBehaviour
                 List<DatabaseItem> databaseItems =
                    JsonConvert.DeserializeObject<List<DatabaseItem>>(data);
 
+
                 foreach (DatabaseItem databaseItem in databaseItems)
                 {
                     Debug.Log(databaseItem.id + " : " + databaseItem.itemname + " : " + databaseItem.information);
@@ -113,6 +176,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    
+   
+
 
 }
