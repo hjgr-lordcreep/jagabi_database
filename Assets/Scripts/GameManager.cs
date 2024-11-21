@@ -4,16 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI text1;
-    [SerializeField] private TextMeshProUGUI text2;
-    [SerializeField] private TextMeshProUGUI text3;
-    [SerializeField] private TextMeshProUGUI text4;
-    [SerializeField] private TextMeshProUGUI text5;
-    [SerializeField] private TextMeshProUGUI text6;
-    [SerializeField] private TextMeshProUGUI text7;
-    [SerializeField] private TextMeshProUGUI text8;
-    [SerializeField] private TextMeshProUGUI text9;
-    [SerializeField] private TextMeshProUGUI text10;
 
     ItemManager itemManager;
 
