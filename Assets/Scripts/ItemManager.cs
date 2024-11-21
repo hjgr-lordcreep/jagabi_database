@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 public class ItemManager : MonoBehaviour
 {
-    public class DataScore
+    public class DatabaseItem
     {
         public string id { get; set; }
         public string itemname { get; set; }
@@ -33,10 +33,15 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
-        StartCoroutine(GetScoreCoroutine());
+        //StartCoroutine(GetDatabaseCoroutine());
 
+        InitialCreateItems();
+    }
+    public void InitialCreateItems()
+    {
         // 아이템 생성 (각 아이템마다 5개씩)
         for (int i = 0; i < itemPrefabs.Count; i++)
         {
@@ -44,21 +49,10 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    ////아이템을 생성하고 리스트에 추가하는 함수
-    //private void CreateItems(GameObject itemPrefab, List<GameObject> itemList)
-    //{
-    //    for (int i = 0; i < Random.Range(0, 5); i++)
-    //    {
-    //        Vector3 randomPos = new Vector3(Random.Range(-5f, 5f), Random.Range(0.5f, 2f), Random.Range(-5f, 5f));
-    //        GameObject spawnedItem = Instantiate(itemPrefab, randomPos, Quaternion.identity);
-    //        itemList.Add(spawnedItem);
-    //    }
-    //}
-
     // 아이템을 생성하고 리스트에 추가하는 함수
     private void CreateItems(GameObject itemPrefab, List<GameObject> itemList)
     {
-        int numItems = Random.Range(10, 15); // 생성할 아이템의 개수를 정합니다.
+        int numItems = Random.Range(0, 5); // 생성할 아이템의 개수를 정합니다.
 
         for (int i = 0; i < numItems; i++)
         {
@@ -89,7 +83,7 @@ public class ItemManager : MonoBehaviour
 
 
 
-    private IEnumerator GetScoreCoroutine()
+    private IEnumerator GetDatabaseCoroutine()
     {
         string uri = "http://127.0.0.1/itemget.php";
 
@@ -108,12 +102,12 @@ public class ItemManager : MonoBehaviour
                 Debug.Log(www.downloadHandler.text);
                 string data = www.downloadHandler.text;
 
-                List<DataScore> dataScores =
-                   JsonConvert.DeserializeObject<List<DataScore>>(data);
+                List<DatabaseItem> databaseItems =
+                   JsonConvert.DeserializeObject<List<DatabaseItem>>(data);
 
-                foreach (DataScore dataScore in dataScores)
+                foreach (DatabaseItem databaseItem in databaseItems)
                 {
-                    Debug.Log(dataScore.id + " : " + dataScore.itemname + " : " + dataScore.information);
+                    Debug.Log(databaseItem.id + " : " + databaseItem.itemname + " : " + databaseItem.information);
                 }
             }
         }
