@@ -4,16 +4,9 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
-    public void Init(PItem.PItemInfo _itemInfo)
+    public void Init(Item _itemInfo)
     {
         Image img = GetComponent<Image>();
-        img.color = _itemInfo.RareToColor();
+        img.color = _itemInfo.itemColor;
     }
-
-    //Items items = new Items();
-    //public void Init()
-    //{
-    //    Image img = GetComponent<Image>();
-    //    img.color = items.itemColor;
-    //}
 }

@@ -24,10 +24,6 @@ public class GameManager : MonoBehaviour
         itemManager = FindAnyObjectByType<ItemManager>();
     }
 
-    private void Start()
-    {
-        SpawnItems();
-    }
     private void Update()
     {
         if(Input.GetMouseButtonDown(0))
@@ -38,16 +34,14 @@ public class GameManager : MonoBehaviour
             {
                 //Debug.Log(hit.transform.gameObject);
 
-                PItem.PItemInfo itemInfo = hit.transform.GetComponent<PItem>().Info;
-                SpawnInvenItem(itemInfo);
 
-                itemList.Remove(hit.transform.gameObject);
-                Destroy(hit.transform.gameObject);
-
-                if (hit.transform.CompareTag("Items"))
-                Debug.Log(hit.transform.gameObject);
                 if (hit.transform.CompareTag("Items"))
                 {
+                    Item itemInfo = hit.transform.GetComponent<Item>();
+                    SpawnInvenItem(itemInfo);
+
+                    itemList.Remove(hit.transform.gameObject);
+                    Destroy(hit.transform.gameObject);
                     //ItemManager의 GeiItemg함수 호출
                     itemManager.GetItem(hit.transform.GetComponent<Item>().id);
                     //itemManager.CountItem();
@@ -58,7 +52,6 @@ public class GameManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnItems();
             itemManager.InitialCreateItems();
         }
 
@@ -73,7 +66,7 @@ public class GameManager : MonoBehaviour
 
 
     private void SpawnInvenItem(
-        PItem.PItemInfo _itemInfo)
+        Item _itemInfo)
     {
         GameObject invenItemGo =
             Instantiate(invenItemPrefab);
@@ -83,25 +76,4 @@ public class GameManager : MonoBehaviour
             invenItemGo.GetComponent<InventoryItem>();
         invenItem.Init(_itemInfo);
     }
-
-
-    private void SpawnItems()
-    {
-        StartCoroutine(SpawnItemsCoroutine());
-    }
-
-    private IEnumerator SpawnItemsCoroutine()
-    {
-
-            GameObject itemGo =
-                Instantiate(
-                    itemPrefab,
-                    Vector3.up,
-                    Quaternion.identity);
-            itemList.Add(itemGo);
-
-            yield return new WaitForSeconds(0.1f);
-
-    }
-
 }
