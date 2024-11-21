@@ -17,6 +17,7 @@ public class ItemManager : MonoBehaviour
     //로그아웃 버튼 선언
     [SerializeField] private Button logout;
     [SerializeField] private TextMeshProUGUI mailText;
+    [SerializeField] private TextMeshProUGUI itemText;
 
     //데이터베이스랑 연결
     public class DatabaseItem
@@ -143,14 +144,9 @@ public class ItemManager : MonoBehaviour
         if(idDic.ContainsKey(_itemId))
         {
             idDic[_itemId] += 1;
+            itemText.text =  _itemId + "번 아이템" + idDic[_itemId]+"개";
         }
 
-        //테스트용 딕셔너리 출력코드
-       foreach (int fg in idDic.Values)
-        {
-            Debug.Log("Value: " + fg);
-            
-        }
     }
 
  
