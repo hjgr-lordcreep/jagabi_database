@@ -38,7 +38,7 @@ public class ItemManager : MonoBehaviour
     {
         //StartCoroutine(GetDatabaseCoroutine());
 
-        InitialCreateItems();
+        //InitialCreateItems();
     }
     public void InitialCreateItems()
     {
