@@ -23,7 +23,7 @@ public class ItemManager : MonoBehaviour
 
     }
 
-
+    private string mail;
 
 
     // 아이템 Prefab 리스트 (정적 변수 배열로 관리)
@@ -43,14 +43,15 @@ public class ItemManager : MonoBehaviour
             itemLists.Add(new List<GameObject>());
         }
 
-
+        mail = PlayerPrefs.GetString("email");
 
     }
 
 
     private void Start()
     {
-        //StartCoroutine(GetDatabaseCoroutine());
+        //아이템리스트 가져오기
+        StartCoroutine(GetDatabaseCoroutine());
 
         InitialCreateItems();
 
@@ -176,7 +177,31 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-   
+    private IEnumerator AddItemCoroutine(string _mail, string _itemid, int _count)
+    {
+        string uri = "http://127.0.0.1/itemupdate.php";
+
+
+        //같은  키값 받아올 것이고
+        WWWForm form = new WWWForm();
+        form.AddField("mail", _mail);
+        form.AddField("itemid", _itemid);
+        form.AddField("count", _count);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("AddScore Success : " + _mail + "(" + _itemid + ")" + "(" + _count + ")");
+            }
+        }
+    }
 
 
 }
