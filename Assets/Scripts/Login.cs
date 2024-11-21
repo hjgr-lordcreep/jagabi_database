@@ -34,12 +34,12 @@ public class Login : MonoBehaviour
         LoginButton.onClick.AddListener(() =>
         {
             StartCoroutine(LoginCoroutine(emailInput.text, passwordInput.text));
+            PlayerPrefs.SetString("email",emailInput.text);
 
         });
         JoinButton.onClick.AddListener(() =>
         {
             //로그인된 메일 값이 저장 & 전달
-            PlayerPrefs.SetString("email",emailInput.text);
             SceneChanged();
         });
         //email = emailInput.GetComponent<InputField>().text;

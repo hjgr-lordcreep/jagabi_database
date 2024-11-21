@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class ItemManager : MonoBehaviour
 {
     //버튼들 선언
@@ -17,9 +19,9 @@ public class ItemManager : MonoBehaviour
     //데이터베이스랑 연결
     public class DatabaseItem
     {
-        public string id { get; set; }
-        public string itemname { get; set; }
-        public string information { get; set; }
+        public string userid { get; set; }
+        public string itemid { get; set; }
+        public string count { get; set; }
 
     }
 
@@ -35,6 +37,10 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private List<string> invenIdList = new List<string>();
     Dictionary<string, int>  idDic = new Dictionary<string, int>();
 
+    Dictionary<string, int>  originDic = new Dictionary<string, int>();
+    
+
+
     private void Awake()
     {
         // 리스트 초기화 (빈 리스트로 초기화)
@@ -44,7 +50,9 @@ public class ItemManager : MonoBehaviour
         }
 
         mail = PlayerPrefs.GetString("email");
+        Debug.Log("mail: " + mail);
 
+        AddDic();
     }
 
 
@@ -55,16 +63,19 @@ public class ItemManager : MonoBehaviour
 
         InitialCreateItems();
 
-        //버튼을 클릭했을 때 딕셔너리 출력
+        //로그아웃버튼을 클릭했을 때 딕셔너리 출력
         logout.onClick.AddListener(() =>
         {
-            foreach (int fg in idDic.Values)
+            foreach(KeyValuePair<string, int>iddic in idDic)
             {
-                Debug.Log("Value: " + fg);
+                Debug.Log("이전까지 통과");
+                StartCoroutine(AddItemCoroutine(mail, iddic.Key, iddic.Value));
+                SceneManager.LoadScene("Jagabee1");
             }
+
+
         });
 
-        AddDic();
     }
     public void InitialCreateItems()
     {
@@ -78,7 +89,7 @@ public class ItemManager : MonoBehaviour
     // 아이템을 생성하고 리스트에 추가하는 함수
     private void CreateItems(GameObject itemPrefab, List<GameObject> itemList)
     {
-        int numItems = 10; // 생성할 아이템의 개수를 정합니다.
+        int numItems = 3; // 생성할 아이템의 개수를 정합니다.
 
         for (int i = 0; i < numItems; i++)
         {
@@ -169,9 +180,11 @@ public class ItemManager : MonoBehaviour
                    JsonConvert.DeserializeObject<List<DatabaseItem>>(data);
 
 
+
                 foreach (DatabaseItem databaseItem in databaseItems)
                 {
-                    Debug.Log(databaseItem.id + " : " + databaseItem.itemname + " : " + databaseItem.information);
+
+                    Debug.Log(databaseItem.userid + " : " + databaseItem.itemid + " : " + databaseItem.count);
                 }
             }
         }
@@ -181,10 +194,11 @@ public class ItemManager : MonoBehaviour
     {
         string uri = "http://127.0.0.1/itemupdate.php";
 
+        //int count = _count + 
 
         //같은  키값 받아올 것이고
         WWWForm form = new WWWForm();
-        form.AddField("mail", _mail);
+        form.AddField("usermail", _mail);
         form.AddField("itemid", _itemid);
         form.AddField("count", _count);
 
@@ -198,7 +212,7 @@ public class ItemManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("AddScore Success : " + _mail + "(" + _itemid + ")" + "(" + _count + ")");
+                Debug.Log("AddItem Success : " + _mail + "(" + _itemid + ")" + "(" + _count + ")");
             }
         }
     }
