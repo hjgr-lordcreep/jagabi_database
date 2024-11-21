@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
             {
                 //Debug.Log(hit.transform.gameObject);
 
-                Item.ItemInfo itemInfo = hit.transform.GetComponent<Item>().Info;
+                PItem.PItemInfo itemInfo = hit.transform.GetComponent<PItem>().Info;
                 SpawnInvenItem(itemInfo);
 
                 itemList.Remove(hit.transform.gameObject);
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
 
     private void SpawnInvenItem(
-        Item.ItemInfo _itemInfo)
+        PItem.PItemInfo _itemInfo)
     {
         GameObject invenItemGo =
             Instantiate(invenItemPrefab);

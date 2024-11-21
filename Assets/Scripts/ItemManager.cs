@@ -50,7 +50,7 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(GetDatabaseCoroutine());
+        //StartCoroutine(GetDatabaseCoroutine());
 
         InitialCreateItems();
 

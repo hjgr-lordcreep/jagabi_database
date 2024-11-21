@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
-    public void Init(Item.ItemInfo _itemInfo)
+    public void Init(PItem.PItemInfo _itemInfo)
     {
         Image img = GetComponent<Image>();
         img.color = _itemInfo.RareToColor();

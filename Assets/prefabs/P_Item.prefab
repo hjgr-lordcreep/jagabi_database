@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1719953042065044693}
   - component: {fileID: 8608837760815769705}
   - component: {fileID: 1574150320661367314}
-  - component: {fileID: 7799679955138960790}
+  - component: {fileID: -1730301555422362148}
   m_Layer: 12
   m_Name: P_Item
   m_TagString: UISVItem
@@ -169,7 +169,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7799679955138960790
+--- !u!114 &-1730301555422362148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,6 +178,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9041961679459921749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ab527675469c2f4da4b3d0109f47601, type: 3}
+  m_Script: {fileID: 11500000, guid: 613ef452652c68f4c807788e64f6d893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
