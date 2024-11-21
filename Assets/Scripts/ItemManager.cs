@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class ItemManager : MonoBehaviour
 {
     //버튼들 선언
@@ -15,6 +16,7 @@ public class ItemManager : MonoBehaviour
 
     //로그아웃 버튼 선언
     [SerializeField] private Button logout;
+    [SerializeField] private TextMeshProUGUI mailText;
 
     //데이터베이스랑 연결
     public class DatabaseItem
@@ -51,6 +53,7 @@ public class ItemManager : MonoBehaviour
 
         mail = PlayerPrefs.GetString("email");
         Debug.Log("mail: " + mail);
+        mailText.text = mail;
 
         AddDic();
     }
