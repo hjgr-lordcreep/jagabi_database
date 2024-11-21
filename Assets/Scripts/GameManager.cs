@@ -3,6 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    ItemManager itemManager;
+
+    private void Awake()
+    {
+        itemManager = FindAnyObjectByType<ItemManager>();
+    }
+
     private void Update()
     {
         if(Input.GetMouseButtonDown(0))
@@ -17,11 +24,15 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            itemManager.InitialCreateItems();
+        }
+
         //µð¹ö±ë¿ë
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.F10))
         {
             SceneManager.LoadScene("Jagabee3");
-
         }
     }
 }
