@@ -1,3 +1,4 @@
+using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal.VersionControl;
@@ -44,7 +45,14 @@ public class GameManager : MonoBehaviour
                 Destroy(hit.transform.gameObject);
 
                 if (hit.transform.CompareTag("Items"))
+                Debug.Log(hit.transform.gameObject);
+                if (hit.transform.CompareTag("Items"))
+                {
+                    //ItemManager의 GeiItemg함수 호출
+                    itemManager.GetItem(hit.transform.GetComponent<Item>().id);
+                    //itemManager.CountItem();
                     hit.transform.gameObject.SetActive(false);
+                }
             }
         }
 
@@ -59,6 +67,8 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("Jagabee3");
         }
+
+       
     }
 
 

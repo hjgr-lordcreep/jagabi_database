@@ -38,5 +38,7 @@ public class Item : MonoBehaviour
         mr.material.color = info.RareToColor();
     }
 
+    //프리펩마다 아이디 부여
+    public string id = string.Empty;
 }
 
