@@ -4,8 +4,11 @@ using UnityEngine;
 
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using UnityEngine.UI;
 public class ItemManager : MonoBehaviour
 {
+    // 인벤토리 내 아이템 표현하는 버튼 10개
+    private Button[] buttons = new Button[10];
     public class DataScore
     {
         public string id { get; set; }
@@ -30,6 +33,12 @@ public class ItemManager : MonoBehaviour
         foreach (var prefab in itemPrefabs)
         {
             itemLists.Add(new List<GameObject>());
+        }
+
+        
+        for(int i = 0; i < 10; ++i)
+        {
+            buttons[i] = GetComponent<Button>();
         }
     }
 
@@ -58,7 +67,7 @@ public class ItemManager : MonoBehaviour
     // 아이템을 생성하고 리스트에 추가하는 함수
     private void CreateItems(GameObject itemPrefab, List<GameObject> itemList)
     {
-        int numItems = Random.Range(10, 15); // 생성할 아이템의 개수를 정합니다.
+        int numItems = 10; // 생성할 아이템의 개수를 정합니다.
 
         for (int i = 0; i < numItems; i++)
         {
